@@ -1,0 +1,5 @@
+// Express js
+// Introduction to Express js
+// Express js is a NPM Package.
+// It is a web application framework for Node.js.
+// Express js manages everything from reciving the request to sending the response.
