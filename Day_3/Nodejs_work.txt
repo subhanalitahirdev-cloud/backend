@@ -1,0 +1,15 @@
+This video provides a comprehensive explanation of how Node.js works internally, focusing on its architecture and how it handles client requests (0:05).
+
+The process begins when a client makes a request to a Node.js server (0:31). This request then enters the Node.js ecosystem, starting with the Event Queue (1:27). All incoming requests are placed in this queue in the order they arrive, similar to a waiting line (1:46).
+
+Next, the Event Loop comes into play (2:00). The event loop is a continuously running process that constantly monitors the event queue. It picks up requests from the queue based on a First-In, First-Out (FIFO) principle (2:20).
+
+Once a request is picked up by the event loop, it categorizes it into one of two types (2:53):
+
+Non-Blocking Operations (Asynchronous) (3:00): If the request is a simple, non-blocking task that doesn't require waiting for external resources (like a complex database query or file I/O), the event loop processes it immediately and sends a response back to the client (3:26).
+Blocking Operations (Synchronous) (2:56): For more complex tasks that might take time to complete, the request is identified as a blocking operation. Instead of blocking the main event loop, these operations are offloaded to a Thread Pool (3:57).
+The Thread Pool is a collection of worker threads that handle these blocking operations (4:09). When a blocking request arrives, an available thread from the pool is assigned to fulfill that task (4:30). Once the thread completes its work, it returns the result, and a response is then sent back to the user (5:06).
+
+A crucial point highlighted in the video is the importance of writing non-blocking code (13:38). By default, Node.js uses 4 threads in its thread pool (6:36). If your application contains too many blocking operations, these limited threads can quickly become busy, leading to a bottleneck where subsequent requests have to wait, causing scalability issues and increased waiting times for users (6:55). The speaker demonstrates this concept by comparing fs.readFileSync (blocking) and fs.readFile (non-blocking) for file operations (7:55).
+
+The video also explains that while the default thread pool size is 4, you can increase its size up to the number of CPU cores available on your server (12:03). The speaker shows how to programmatically determine the number of CPU cores using the os.cpus().length method in Node.js (12:48). The overarching message is to prioritize non-blocking code to ensure your Node.js applications remain responsive and scalable (14:04)

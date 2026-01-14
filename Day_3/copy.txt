@@ -1,0 +1,4 @@
+In the lecture i learned two things.
+1- Node js cannot be run on DOM.
+2- To run a file I can also write any script to run that file
+Hi, I am Subhan
